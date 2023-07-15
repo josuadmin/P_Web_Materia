@@ -9,7 +9,7 @@
 //     }        
 // }
 // console.log(pares);
-// console.log(impares);
+//  console.log(impares);
 
 
 **tarea numeros primos == plus sacando raiz cuadrada.

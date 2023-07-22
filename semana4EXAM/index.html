@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+  <body>
+
+    <form action="">
+    <label>
+            Nota 1
+            <input type="text" name="" id="txt_nota1">
+        </label>
+
+        <label>
+            Nota 2
+            <input type="text" name="" id="txt_nota2">
+        </label>
+
+        <label>
+            Nota 3
+            <input type="text" name="" id="txt_nota3">
+        </label>
+
+            <button type="submit" id="enviar">
+                Enviar
+            </button>
+
+    </form>
+
+                <p id="res"></p>
+        <script>
+            const nota1= document.querySelector("#txt_nota1")
+            const nota2= document.querySelector("#txt_nota2")
+            const nota3 = document.querySelector("#txt_nota3")
+            
+            const enviar = document.getElementById("enviar")
+            const resultado = document.getElementById("res")
+
+
+            enviar.addEventListener('click',(e) => {
+
+                e.preventDefault();
+
+                const res=(parseFloat(nota1.value)+parseFloat(nota2.value)+parseFloat(nota3.value)) / 3;
+                resultado.innerHTML=res;
+
+
+
+            })
+
+           
+
+
+        </script>
+    
+  </body>
+</html>

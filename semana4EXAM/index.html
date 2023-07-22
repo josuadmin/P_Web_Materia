@@ -3,57 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Examen primer parcial.</title>
+    <link rel="stylesheet" href="style4.css">
 </head>
-  <body>
+<body>
 
-    <form action="">
-    <label>
-            Nota 1
-            <input type="text" name="" id="txt_nota1">
+    <center>
+
+        <h1>Examen primer parcial de programación Web</h1>
+        <h1>Instituto Tecnologico Universitario ITI</h1>
+        <h1>Materia: Programcion Web</h1>
+        <h1>Nombre: Josue Herrera</h1>
+        <h1>Realización de prueba en base a notas de parciales</h1>
+
+    </center>
+
+    <hr>
+
+    <h2>Notas de primer parcial</h2>
+    <form>
+        <label>
+            Nota 1 primer parcial
+            <input type="text" name="nota1primerparcial" id="txt_nota1primerparcial">
         </label>
 
         <label>
-            Nota 2
-            <input type="text" name="" id="txt_nota2">
+            Nota 2 primer parcial
+            <input type="text" name="nota2primerparcial" id="txt_nota2primerparcial">
         </label>
 
         <label>
-            Nota 3
-            <input type="text" name="" id="txt_nota3">
+            Nota 3 primer parcial
+            <input type="text" name="nota3primerparcial" id="txt_nota3primerparcial">
         </label>
 
-            <button type="submit" id="enviar">
-                Enviar
-            </button>
-
+        <button type="button" id="enviar1">
+            Enviar
+        </button>
     </form>
 
-                <p id="res"></p>
-        <script>
-            const nota1= document.querySelector("#txt_nota1")
-            const nota2= document.querySelector("#txt_nota2")
-            const nota3 = document.querySelector("#txt_nota3")
-            
-            const enviar = document.getElementById("enviar")
-            const resultado = document.getElementById("res")
+    <p id="res1"></p>
+    <hr>
 
+    <h2>Notas del segundo parcial</h2>
+    <form>
+        <label>
+            Nota 1 segundo parcial
+            <input type="text" name="nota1segundoparcial" id="txt_nota1segundoparcial">
+        </label>
 
-            enviar.addEventListener('click',(e) => {
+        <label>
+            Nota 2 segundo parcial
+            <input type="text" name="nota2segundoparcial" id="txt_nota2segundoparcial">
+        </label>
 
-                e.preventDefault();
+        <label>
+            Nota 3 segundo parcial
+            <input type="text" name="nota3segundoparcial" id="txt_nota3segundoparcial">
+        </label>
 
-                const res=(parseFloat(nota1.value)+parseFloat(nota2.value)+parseFloat(nota3.value)) / 3;
-                resultado.innerHTML=res;
+        <button type="button" id="enviar2">
+            Enviar
+        </button>
+    </form>
 
+    <p id="res2"></p>
+    <hr>
 
+    <h2>Nota de Examen Final del parcial</h2>
+    <form>
+        <label>
+            Nota Examen Final
+            <input type="text" name="notaexamenfinal" id="txt_notaexamenfinal">
+        </label>
 
-            })
+        <button type="button" id="enviar3">
+            Enviar
+        </button>
+    </form>
 
-           
+    <p id="res3"></p>
 
-
-        </script>
+    <script>
+        const enviar1 = document.getElementById("enviar1");
+        const enviar2 = document.getElementById("enviar2");
+        const enviar3 = document.getElementById("enviar3");
     
-  </body>
+        const res1 = document.getElementById("res1");
+        const res2 = document.getElementById("res2");
+        const res3 = document.getElementById("res3");
+    
+        enviar1.addEventListener('click', () => {
+            const nota1 = parseFloat(document.getElementById("txt_nota1primerparcial").value);
+            const nota2 = parseFloat(document.getElementById("txt_nota2primerparcial").value);
+            const nota3 = parseFloat(document.getElementById("txt_nota3primerparcial").value);
+            const promedio = (nota1 + nota2 + nota3) / 3;
+            res1.innerHTML = `El promedio del primer parcial es: ${promedio.toFixed(2)}`;
+            checkResultado(promedio, res1);
+        });
+    
+        enviar2.addEventListener('click', () => {
+            const nota1 = parseFloat(document.getElementById("txt_nota1segundoparcial").value);
+            const nota2 = parseFloat(document.getElementById("txt_nota2segundoparcial").value);
+            const nota3 = parseFloat(document.getElementById("txt_nota3segundoparcial").value);
+            const promedio = (nota1 + nota2 + nota3) / 3;
+            res2.innerHTML = `El promedio del segundo parcial es: ${promedio.toFixed(2)}`;
+            checkResultado(promedio, res2);
+        });
+    
+        enviar3.addEventListener('click', () => {
+            const notaFinal = parseFloat(document.getElementById("txt_notaexamenfinal").value);
+            res3.innerHTML = `La nota del Examen Final del parcial es: ${notaFinal}`;
+            checkResultado(notaFinal, res3);
+        });
+    
+        function checkResultado(nota, resultadoElement) {
+            let mensaje = "";
+            if (nota >= 10) {
+                mensaje = "Aprobado";
+            } if (nota >= 0 && nota < 7) {
+                mensaje = "Supletorio";
+            } if (nota >= 0 && nota < 6.9){
+                mensaje = "Perdió el semestre";
+            }
+            resultadoElement.innerHTML += `<br>${mensaje}`;
+        }
+    </script>
+</body>
 </html>

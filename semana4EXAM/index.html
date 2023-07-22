@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Examen primer parcial.</title>
     <link rel="stylesheet" href="style4.css">
 </head>
+
 <body>
 
     <center>
 
         <h1>Examen primer parcial de programación Web</h1>
         <h1>Instituto Tecnologico Universitario ITI</h1>
+        <h1>ING: Cristian Muños</h1>
         <h1>Materia: Programcion Web</h1>
         <h1>Nombre: Josue Herrera</h1>
         <h1>Realización de prueba en base a notas de parciales</h1>
@@ -20,20 +23,23 @@
 
     <hr>
 
-    <h2>Notas de primer parcial</h2>
+    <center>
+        <h2>Notas de primer parcial</h2>
+    </center>
+
     <form>
         <label>
-            Nota 1 primer parcial
+            Nota1PPrcial
             <input type="text" name="nota1primerparcial" id="txt_nota1primerparcial">
         </label>
 
         <label>
-            Nota 2 primer parcial
+            Nota2PPrcial
             <input type="text" name="nota2primerparcial" id="txt_nota2primerparcial">
         </label>
 
         <label>
-            Nota 3 primer parcial
+            Nota3PPrcial
             <input type="text" name="nota3primerparcial" id="txt_nota3primerparcial">
         </label>
 
@@ -45,20 +51,23 @@
     <p id="res1"></p>
     <hr>
 
-    <h2>Notas del segundo parcial</h2>
+    <center>
+        <h2>Notas del segundo parcial</h2>
+    </center>
+
     <form>
         <label>
-            Nota 1 segundo parcial
+            Nota1SPrcial
             <input type="text" name="nota1segundoparcial" id="txt_nota1segundoparcial">
         </label>
 
         <label>
-            Nota 2 segundo parcial
+            Nota2SPrcial
             <input type="text" name="nota2segundoparcial" id="txt_nota2segundoparcial">
         </label>
 
         <label>
-            Nota 3 segundo parcial
+            Nota3SPrcial
             <input type="text" name="nota3segundoparcial" id="txt_nota3segundoparcial">
         </label>
 
@@ -70,7 +79,10 @@
     <p id="res2"></p>
     <hr>
 
-    <h2>Nota de Examen Final del parcial</h2>
+    <center>
+        <h2>Nota de Examen Final del parcial</h2>
+    </center>
+
     <form>
         <label>
             Nota Examen Final
@@ -88,11 +100,11 @@
         const enviar1 = document.getElementById("enviar1");
         const enviar2 = document.getElementById("enviar2");
         const enviar3 = document.getElementById("enviar3");
-    
+
         const res1 = document.getElementById("res1");
         const res2 = document.getElementById("res2");
         const res3 = document.getElementById("res3");
-    
+
         enviar1.addEventListener('click', () => {
             const nota1 = parseFloat(document.getElementById("txt_nota1primerparcial").value);
             const nota2 = parseFloat(document.getElementById("txt_nota2primerparcial").value);
@@ -101,7 +113,7 @@
             res1.innerHTML = `El promedio del primer parcial es: ${promedio.toFixed(2)}`;
             checkResultado(promedio, res1);
         });
-    
+
         enviar2.addEventListener('click', () => {
             const nota1 = parseFloat(document.getElementById("txt_nota1segundoparcial").value);
             const nota2 = parseFloat(document.getElementById("txt_nota2segundoparcial").value);
@@ -110,24 +122,25 @@
             res2.innerHTML = `El promedio del segundo parcial es: ${promedio.toFixed(2)}`;
             checkResultado(promedio, res2);
         });
-    
+
         enviar3.addEventListener('click', () => {
             const notaFinal = parseFloat(document.getElementById("txt_notaexamenfinal").value);
             res3.innerHTML = `La nota del Examen Final del parcial es: ${notaFinal}`;
             checkResultado(notaFinal, res3);
         });
-    
+
         function checkResultado(nota, resultadoElement) {
             let mensaje = "";
             if (nota >= 10) {
                 mensaje = "Aprobado";
-            } if (nota >= 0 && nota < 7) {
+            } else if (nota >= 0 && nota < 7) {
                 mensaje = "Supletorio";
-            } if (nota >= 0 && nota < 6.9){
+            } else if (nota >= 0 && nota < 6.9) {
                 mensaje = "Perdió el semestre";
             }
             resultadoElement.innerHTML += `<br>${mensaje}`;
         }
     </script>
 </body>
+
 </html>

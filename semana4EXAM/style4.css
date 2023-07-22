@@ -22,4 +22,9 @@ body{
 
 h1{
     font-family: 'Times New Roman', Times, serif;
+    color: rgb(56, 121, 138);
+}
+
+h2{
+    color: rgb(94, 33, 33);
 }

@@ -1,62 +1,52 @@
 const express = require('express');
 const app = express();
 
-function esPar(numero) {
-  return numero % 2 === 0;
-}
+function esPrimo(num) {
+  if (num <= 1) return false;
+  if (num <= 3) return true;
 
-function obtenerMayorMedioMenor(n1, n2, n3) {
-  let mayor, medio, menor;
+  if (num % 2 === 0 || num % 3 === 0) return false;
 
-  if (n1 > n2 && n1 > n3) {
-    mayor = n1;
-    medio = n2 > n3 ? n2 : n3;
-    menor = n2 < n3 ? n2 : n3;
-  } else if (n2 > n1 && n2 > n3) {
-    mayor = n2;
-    medio = n1 > n3 ? n1 : n3;
-    menor = n1 < n3 ? n1 : n3;
-  } else {
-    mayor = n3;
-    medio = n1 > n2 ? n1 : n2;
-    menor = n1 < n2 ? n1 : n2;
+  let i = 5;
+  while (i * i <= num) {
+    if (num % i === 0 || num % (i + 2) === 0) return false;
+    i += 6;
   }
 
-  return { mayor, medio, menor };
+  return true;
 }
 
-app.get('/home', function (req, res) {
+app.get('/home', (req, res) => {
   const n1 = parseInt(req.query.n1);
   const n2 = parseInt(req.query.n2);
   const n3 = parseInt(req.query.n3);
 
   if (isNaN(n1) || isNaN(n2) || isNaN(n3)) {
-    return res.status(400).json({ error: 'Por favor, ingrese números válidos.' });
+    return res.status(400).json({ error: 'Uno o más valores proporcionados no son números válidos.' });
   }
 
-  const { mayor, medio, menor } = obtenerMayorMedioMenor(n1, n2, n3);
-  const resultadoN1 = esPar(n1) ? 'par' : 'impar';
-  const resultadoN2 = esPar(n2) ? 'par' : 'impar';
-  const resultadoN3 = esPar(n3) ? 'par' : 'impar';
+  let mayor = Math.max(n1, n2, n3);
+  let menor = Math.min(n1, n2, n3);
+  let medio = n1 + n2 + n3 - mayor - menor;
 
   res.json({
     n1,
     n2,
     n3,
-    resultadoN1,
-    resultadoN2,
-    resultadoN3,
     mayor,
     medio,
     menor,
+    n1_esPrimo: esPrimo(n1),
+    n2_esPrimo: esPrimo(n2),
+    n3_esPrimo: esPrimo(n3),
   });
 });
 
-app.get('/nosotros', function (req, res) {
-  res.send('Aqui estamos nosotros');
+app.get('/nosotros', (req, res) => {
+  res.send("Aquí estamos nosotros");
 });
 
-const port = 3000;
-app.listen(port, function () {
-  console.log(`Escuchando en el puerto ${port}`);
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Escuchando en el puerto ${PORT}`);
 });

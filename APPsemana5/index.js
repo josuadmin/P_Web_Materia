@@ -2,13 +2,33 @@ const express = require("express");
 //iniciando la app
 const app = express();
 
-app.get('/home', function(req, res){
-    const id = req.query.id
-    const limit = req.query.limit  
+const {Date} = require('./src/services/Date');
+const {Usuarios} = require('./src/services/Usuarios');
+
+app.use(express.json());
+
+app.get('/home', (req, res) => {
+    try {
+        const date3 = new Date(2024,-2,29);
+        res.json({
+        fecha: date3.Print()}
+        );
+    } catch (error) {
+       res.json({
+        m: error.message
+       })    
+    }
+    console.log('sigo ejecutandome');
+
+})
+
+app.get('/user', async (req, res) => {
+    const user = new Usuarios();
+    const newUser = await user.find();
     res.json({
-        id,
-        limit
-    });  
+        res: newUser
+    });
+    console.log(newUser);
 })
 
 

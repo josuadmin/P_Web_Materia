@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+ bd:
+  image: postgres
+  restart: always
+  environment:
+   POSTGRES_PASSWORD: secret
+   POSTGRES_DB: recetas
+  ports:
+   - 5432:5432
+  volumes:
+   - ./postgres_data:/var/lib/postgresql/data
+
+
+ pdadmin:
+  image: dpage/pgadmin4
+  restart: always
+  environment:
+   PGADMIN_DEFAULT_EMAIL: josuadmin@gmail.com
+   PGADMIN_DEFAULT_PASSWORD: secret
+  ports:
+   - 8080:80
+  depends_on:
+   - bd 
